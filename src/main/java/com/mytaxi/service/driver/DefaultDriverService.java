@@ -6,6 +6,7 @@ import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.domainobject.DriverDO;
 import com.mytaxi.domainvalue.GeoCoordinate;
 import com.mytaxi.domainvalue.OnlineStatus;
+import com.mytaxi.exception.CarAlreadyInUseException;
 import com.mytaxi.exception.ConstraintsViolationException;
 import com.mytaxi.exception.EntityNotFoundException;
 import java.util.List;
@@ -134,9 +135,15 @@ public class DefaultDriverService implements DriverService
      * @throws EntityNotFoundException
      */
     @Override
-    public void updateSelectedCar(long driverId, CarDO car) throws EntityNotFoundException
+    public void updateSelectedCar(long driverId, CarDO car) throws EntityNotFoundException, CarAlreadyInUseException
     {
+        List<DriverDO> driversWithCar = driverRepository.findByOnlineStatusAndSelectedCar(
+                OnlineStatus.ONLINE, car);
         DriverDO driverDO = findDriverChecked(driverId);
+        if (!driversWithCar.isEmpty() &&
+                !(driversWithCar.size() > 1 && driversWithCar.contains(driverDO))) {
+            throw new CarAlreadyInUseException("Car already in use by another driver ...");
+        }
         driverDO.setSelectedCar(car);
         driverRepository.save(driverDO);
     }

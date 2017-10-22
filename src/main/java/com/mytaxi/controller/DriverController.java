@@ -5,6 +5,7 @@ import com.mytaxi.datatransferobject.DriverDTO;
 import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.domainobject.DriverDO;
 import com.mytaxi.domainvalue.OnlineStatus;
+import com.mytaxi.exception.CarAlreadyInUseException;
 import com.mytaxi.exception.ConstraintsViolationException;
 import com.mytaxi.exception.EntityNotFoundException;
 import com.mytaxi.service.car.CarService;
@@ -88,7 +89,7 @@ public class DriverController
     public void updateCar(@PathVariable long driverId,
                                              @RequestParam(value = "car_id",
                                              required = false) Long carId)
-            throws EntityNotFoundException
+            throws EntityNotFoundException, CarAlreadyInUseException
     {
         CarDO carDO = null;
         if (carId != null) {

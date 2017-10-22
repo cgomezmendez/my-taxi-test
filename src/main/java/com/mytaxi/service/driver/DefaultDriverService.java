@@ -1,6 +1,8 @@
 package com.mytaxi.service.driver;
 
+import com.mytaxi.dataaccessobject.CarRepository;
 import com.mytaxi.dataaccessobject.DriverRepository;
+import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.domainobject.DriverDO;
 import com.mytaxi.domainvalue.GeoCoordinate;
 import com.mytaxi.domainvalue.OnlineStatus;
@@ -98,6 +100,7 @@ public class DefaultDriverService implements DriverService
     {
         DriverDO driverDO = findDriverChecked(driverId);
         driverDO.setCoordinate(new GeoCoordinate(latitude, longitude));
+        driverRepository.save(driverDO);
     }
 
 
@@ -123,4 +126,18 @@ public class DefaultDriverService implements DriverService
         return driverDO;
     }
 
+    /**
+     * Update the selected car for a driver.
+     *
+     * @param driverId
+     * @param car
+     * @throws EntityNotFoundException
+     */
+    @Override
+    public void updateSelectedCar(long driverId, CarDO car) throws EntityNotFoundException
+    {
+        DriverDO driverDO = findDriverChecked(driverId);
+        driverDO.setSelectedCar(car);
+        driverRepository.save(driverDO);
+    }
 }

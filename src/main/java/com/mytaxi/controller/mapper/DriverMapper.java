@@ -18,14 +18,18 @@ public class DriverMapper
     public static DriverDTO makeDriverDTO(DriverDO driverDO)
     {
         DriverDTO.DriverDTOBuilder driverDTOBuilder = DriverDTO.newBuilder()
-            .setId(driverDO.getId())
-            .setPassword(driverDO.getPassword())
-            .setUsername(driverDO.getUsername());
+                .setId(driverDO.getId())
+                .setPassword(driverDO.getPassword())
+                .setUsername(driverDO.getUsername());
 
         GeoCoordinate coordinate = driverDO.getCoordinate();
         if (coordinate != null)
         {
             driverDTOBuilder.setCoordinate(coordinate);
+        }
+
+        if (driverDO.getSelectedCar() != null) {
+            driverDTOBuilder.setSelectedCar(CarMapper.makeCarDTO(driverDO.getSelectedCar()));
         }
 
         return driverDTOBuilder.createDriverDTO();

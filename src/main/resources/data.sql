@@ -40,3 +40,48 @@ values
  (8,
  'aced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704023000000000000404bfa1cac083127', now(), now(), false, 'ONLINE',
 'driver08pw', 'driver08');
+
+insert into manufacturer(id, name, date_created)
+values(1, 'Toyota', now());
+insert into manufacturer(id, name, date_created)
+values(2, 'Tesla', now());
+
+insert into car(id, license_plate, seat_count,
+convertible, engine_type, rating, manufacturer_id,
+date_created, deleted)
+values (1, 'ABCD-123467890', 4, false, 'GAS',
+100, 1, now(), false);
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (2, 'BBCD-123467890', 2, true, 'GAS',
+100, 1, now(), false);
+
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (3, 'CBCD-123467890', 2, true, 'ELECTRIC',
+                                               100, 1, now(), false);
+
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (4, 'DBCD-123467890', 2, true, 'HYBRID',
+                                               100, 1, now(), false);
+
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (5, 'EBCD-123467890', 2, true, 'DIESEL',
+                                               100, 1, now(), false);
+
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (6, 'FBCD-123467890', 4, false, 'ELECTRIC',
+                                               100, 2, now(), false);
+
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (7, 'GBCD-123467890', 4, false, 'ELECTRIC',
+                                               100, 2, now(), false);
+
+insert into car(id, license_plate, seat_count,
+                convertible, engine_type, rating, manufacturer_id,
+                date_created, deleted) values (8, 'HBCD-123467890', 4, false, 'ELECTRIC',
+                                               50, 2, now(), false);

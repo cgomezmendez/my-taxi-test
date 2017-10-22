@@ -3,15 +3,7 @@ package com.mytaxi.domainobject;
 import com.mytaxi.domainvalue.GeoCoordinate;
 import com.mytaxi.domainvalue.OnlineStatus;
 import java.time.ZonedDateTime;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -52,6 +44,10 @@ public class DriverDO
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OnlineStatus onlineStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "selectedCarId")
+    private CarDO selectedCar;
 
 
     private DriverDO()
@@ -130,4 +126,13 @@ public class DriverDO
         this.dateCoordinateUpdated = ZonedDateTime.now();
     }
 
+    public CarDO getSelectedCar()
+    {
+        return selectedCar;
+    }
+
+    public void setSelectedCar(CarDO selectedCar)
+    {
+        this.selectedCar = selectedCar;
+    }
 }

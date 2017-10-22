@@ -64,6 +64,13 @@
             <version>5.0.5.Final</version>
         </dependency>
 
+        <!-- Static data model generation -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>5.0.5.Final</version>
+        </dependency>
+
         <!-- In-Memory DB -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -99,6 +106,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArguments>
+                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                    </compilerArguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>

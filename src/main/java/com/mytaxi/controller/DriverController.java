@@ -1,6 +1,7 @@
 package com.mytaxi.controller;
 
 import com.mytaxi.controller.mapper.DriverMapper;
+import com.mytaxi.dataaccessobject.DriverCriteriaSelectedCar;
 import com.mytaxi.datatransferobject.DriverDTO;
 import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.domainobject.DriverDO;
@@ -79,10 +80,15 @@ public class DriverController
 
 
     @GetMapping
-    public List<DriverDTO> findDrivers(@RequestParam OnlineStatus onlineStatus)
+    public List<DriverDTO> findDrivers(@RequestParam OnlineStatus onlineStatus,
+                                       @RequestParam(required = false) Boolean hasCar)
         throws ConstraintsViolationException, EntityNotFoundException
     {
-        return DriverMapper.makeDriverDTOList(driverService.find(onlineStatus));
+        List<DriverDO> drivers = driverService.find(onlineStatus);
+        if (hasCar != null) {
+            drivers = new DriverCriteriaSelectedCar().meetCriteria(drivers);
+        }
+        return DriverMapper.makeDriverDTOList(drivers);
     }
 
     @PutMapping("/{driverId}/selected_car")
@@ -95,7 +101,6 @@ public class DriverController
         if (carId != null) {
             carDO = carService.find(carId);
         }
-        DriverDO driverDO = driverService.find(driverId);
         driverService.updateSelectedCar(driverId, carDO);
     }
 }

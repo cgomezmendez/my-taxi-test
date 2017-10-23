@@ -28,8 +28,8 @@
         <java.version>1.8</java.version>
         <!-- dependency versions -->
         <com.google.guava.guava.version>21.0</com.google.guava.guava.version>
-        <io.springfox.springfox-swagger2>2.3.1</io.springfox.springfox-swagger2>
-        <io.springfox.springfox-swagger-ui>2.3.1</io.springfox.springfox-swagger-ui>
+        <io.springfox.springfox-swagger2>2.7.0</io.springfox.springfox-swagger2>
+        <io.springfox.springfox-swagger-ui>2.7.0</io.springfox.springfox-swagger-ui>
     </properties>
 
     <dependencies>
@@ -97,6 +97,25 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${io.springfox.springfox-swagger-ui}</version>
+        </dependency>
+
+        <!-- Include spring security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>4.2.3.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>4.2.3.RELEASE</version>
+        </dependency>
+
+        <!-- Include JsonWeb token for authentication token parse -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
         </dependency>
 
     </dependencies>

@@ -85,3 +85,7 @@ insert into car(id, license_plate, seat_count,
                 convertible, engine_type, rating, manufacturer_id,
                 date_created, deleted) values (8, 'HBCD-123467890', 4, false, 'ELECTRIC',
                                                50, 2, now(), false);
+
+insert into user(id, username, password, date_created)
+    values(1, 'user01', '$2a$10$sAwPcjVHP1bPj5LOwYBPuO3boP6DBrgnPlH2fmcRbJjL0/h6q.QVa', now());
+//password user01pw
